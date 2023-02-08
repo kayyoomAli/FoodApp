@@ -1,0 +1,20 @@
+const routesNames = {
+  Cart: 'Cart',
+  Order: 'Order',
+  splash: 'Splash',
+  mytabs: 'Mytabs',
+  Profile: 'Profile',
+  EditItem: 'EditItem',
+  settings: 'settings',
+  AddItems: 'AddItems',
+  Checkout: 'Checkout',
+  userLogin: 'UserLogin',
+  HomeScreen: 'HomeScreen',
+  admin_login: 'AdminLogin',
+  user_signup: 'UserSignUp',
+  GetAllItems: 'GetAllItems',
+  MyAdminTabss: 'MyAdminTabss',
+  Notifications: 'Notifications',
+  AdminNotification: 'AdminNotification',
+};
+export default routesNames;
