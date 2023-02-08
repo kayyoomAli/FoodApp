@@ -81,18 +81,18 @@ const Checkout = () => {
    * @description return the Payement method of razorPay
    */
   const PayNow = async () => {
-    const email = await AsyncStorage.getItem('EMAIL');
     const name = await AsyncStorage.getItem('NAME');
+    const email = await AsyncStorage.getItem('EMAIL');
     const mobile = await AsyncStorage.getItem('MOBILE');
     const userId = await AsyncStorage.getItem('USERID');
 
-    const amt = getTotal();
+    const amt = getTotal() * 82;
     var options: any = {
       description: 'Credits towards Food App Inc.',
       image: require('../../images/logo.png'),
       currency: 'INR',
       key: 'rzp_test_I0jaUf6NcXxqCP',
-      amount: amt * 100,
+      amount: amt * 82,
       name: 'Food App',
       order_id: '', //Replace this with an order_id created using Orders API.
       prefill: {

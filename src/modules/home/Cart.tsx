@@ -25,7 +25,7 @@ const Cart = () => {
   const navigation = useNavigation<any>();
   const [isLoad, setIsLoad] = useState(false);
   const [cartList, setCartList] = useState([]);
-
+  // cartList.map()
   useEffect(() => {
     getCartItems();
   }, [isFocused]);
@@ -35,6 +35,7 @@ const Cart = () => {
    * @getCartItems Function
    * @description return cart Items
    */
+
   const getCartItems = async () => {
     setIsLoad(true);
     userId = await AsyncStorage.getItem('USERID');

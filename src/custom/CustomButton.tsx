@@ -47,7 +47,7 @@ const CustomButton = (props: ButtonProps) => {
   );
 };
 
-export default CustomButton;
+export default React.memo(CustomButton);
 
 const styles = StyleSheet.create({
   loginBtn: {
