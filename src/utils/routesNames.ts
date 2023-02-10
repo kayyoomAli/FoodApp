@@ -14,6 +14,7 @@ const routesNames = {
   user_signup: 'UserSignUp',
   GetAllItems: 'GetAllItems',
   MyAdminTabss: 'MyAdminTabss',
+  DetailsScreen: 'DetailsScreen',
   Notifications: 'Notifications',
   AdminNotification: 'AdminNotification',
 };

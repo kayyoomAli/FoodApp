@@ -21,10 +21,10 @@ import {
 } from '../../utils/dimensions';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const {width, height} = Dimensions.get('window');
-
 import {useIsFocused, useNavigation} from '@react-navigation/native';
-
+import {SharedElement} from 'react-navigation-shared-element';
+import routesNames from '../../utils/routesNames';
+const {width, height} = Dimensions.get('window');
 let userId: any = '';
 /**
  *
@@ -41,38 +41,39 @@ const Home = () => {
   const categoryData = [
     {
       id: 1,
-      image: require('../../images/cart.png'),
       title: 'Meat',
       color: 'tomato',
+      image: require('../../images/cart.png'),
     },
     {
       id: 2,
-      image: require('../../images/cart.png'),
       title: 'Pizza',
       color: 'thistle',
+      image: require('../../images/cart.png'),
     },
     {
       id: 3,
-      image: require('../../images/cart.png'),
       title: 'Burgers',
       color: 'skyblue',
+      image: require('../../images/cart.png'),
     },
     {
       id: 4,
-      image: require('../../images/cart.png'),
       title: 'Noodels',
       color: 'teal',
+      image: require('../../images/cart.png'),
     },
     {
       id: 5,
-      image: require('../../images/cart.png'),
       title: 'Coldrinks',
       color: 'orange',
+      image: require('../../images/cart.png'),
     },
   ];
 
   useEffect(() => {
     getCartItems();
+    console.log('Fillperrr');
   }, [isFocused]);
 
   useEffect(() => {
@@ -81,14 +82,9 @@ const Home = () => {
       .collection('items')
       .get()
       .then(querySnapshot => {
-        console.log('Total users: ', querySnapshot.size);
+        // console.log('Total users: ', querySnapshot.size);
         let tempData: any = [];
         querySnapshot.forEach(documentSnapshot => {
-          console.log(
-            'User ID: ',
-            documentSnapshot.id,
-            documentSnapshot.data(),
-          );
           tempData?.push({
             id: documentSnapshot.id,
             data: documentSnapshot.data(),
@@ -116,14 +112,8 @@ const Home = () => {
       .collection('items')
       .get()
       .then(querySnapshot => {
-        console.log('Total users: ', querySnapshot.size);
         let tempData: any = [];
         querySnapshot.forEach(documentSnapshot => {
-          console.log(
-            'User ID: ',
-            documentSnapshot.id,
-            documentSnapshot.data(),
-          );
           tempData?.push({
             id: documentSnapshot.id,
             data: documentSnapshot.data(),
@@ -220,8 +210,16 @@ const Home = () => {
    */
   const _renderItem = ({item, index}: any) => {
     return (
-      <View style={styles.itemView}>
-        <Image source={{uri: item?.data?.imageUrl}} style={styles.itemImage} />
+      <TouchableOpacity
+        onPress={() => navigation.navigate(routesNames.DetailsScreen, {item})}
+        // ref={ref => (startAncestor = nodeFromRef(ref))}
+        style={styles.itemView}>
+        <SharedElement id={`image` + item?.id}>
+          <Image
+            source={{uri: item?.data?.imageUrl}}
+            style={styles.itemImage}
+          />
+        </SharedElement>
         <View style={styles.nameView}>
           <Text style={styles.nameText}>{item?.data?.name}</Text>
           <Text style={styles.descText}>{item?.data?.description}</Text>
@@ -239,7 +237,7 @@ const Home = () => {
           }}>
           <Text style={{color: COLORS.WHITE}}>Add To cart</Text>
         </TouchableOpacity>
-      </View>
+      </TouchableOpacity>
     );
   };
 
@@ -303,7 +301,7 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default React.memo(Home);
 const styles = StyleSheet.create({
   container: {
     flex: 1,

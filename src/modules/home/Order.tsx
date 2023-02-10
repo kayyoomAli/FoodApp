@@ -105,6 +105,7 @@ const Checkout = () => {
     RazorpayCheckout.open(options)
       .then(data => {
         // handle success
+        console.log('razorpay data', data);
         navigation.navigate('OrderStatus', {
           status: 'success',
           paymentId: data?.razorpay_payment_id,
